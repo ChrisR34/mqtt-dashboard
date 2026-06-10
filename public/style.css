@@ -1,0 +1,99 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f1117;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #00d4ff;
+}
+
+#status {
+  font-size: 0.9rem;
+  margin-bottom: 40px;
+  color: #888;
+}
+
+#status.connected { color: #00ff88; }
+
+.cards {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: #1a1d27;
+  border-radius: 16px;
+  padding: 40px;
+  width: 220px;
+  text-align: center;
+  border: 1px solid #2a2d3a;
+  transition: border-color 0.3s;
+}
+
+.card:hover { border-color: #00d4ff; }
+
+.card .icon { font-size: 2.5rem; margin-bottom: 15px; }
+
+.card .label {
+  font-size: 0.85rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.card .value {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #00d4ff;
+}
+
+.card .unit {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 5px;
+}
+
+#log {
+  margin-top: 50px;
+  width: 100%;
+  max-width: 600px;
+  background: #1a1d27;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #2a2d3a;
+}
+
+#log h2 {
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#log ul {
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#log ul li {
+  font-size: 0.85rem;
+  color: #aaa;
+  padding: 5px 0;
+  border-bottom: 1px solid #2a2d3a;
+  font-family: monospace;
+}

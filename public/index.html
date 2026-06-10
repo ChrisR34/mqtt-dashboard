@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MQTT Sensor Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>🌡 Sensor Dashboard</h1>
+  <div id="status">Connecting...</div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="icon">🌡️</div>
+      <div class="label">Temperature</div>
+      <div class="value" id="temp">--</div>
+      <div class="unit">°C</div>
+    </div>
+    <div class="card">
+      <div class="icon">💧</div>
+      <div class="label">Humidity</div>
+      <div class="value" id="humidity">--</div>
+      <div class="unit">% RH</div>
+    </div>
+  </div>
+
+  <div id="log">
+    <h2>Message Log</h2>
+    <ul id="log-list"></ul>
+  </div>
+
+  <script>
+    const ws = new WebSocket('ws://localhost:3000');
+    const status = document.getElementById('status');
+
+    ws.onopen = () => {
+      status.textContent = '● Connected';
+      status.className = 'connected';
+    };
+
+    ws.onclose = () => {
+      status.textContent = '● Disconnected';
+      status.className = '';
+    };
+
+    ws.onmessage = (event) => {
+      const { topic, data } = JSON.parse(event.data);
+
+      // Update cards based on topic
+      if (topic.includes('temperature')) {
+        document.getElementById('temp').textContent = parseFloat(data).toFixed(1);
+      }
+      if (topic.includes('humidity')) {
+        document.getElementById('humidity').textContent = parseFloat(data).toFixed(1);
+      }
+
+      // Add to log
+      const li = document.createElement('li');
+      const time = new Date().toLocaleTimeString();
+      li.textContent = `[${time}] ${topic}: ${data}`;
+      const logList = document.getElementById('log-list');
+      logList.insertBefore(li, logList.firstChild);
+    };
+  </script>
+
+</body>
+</html>
