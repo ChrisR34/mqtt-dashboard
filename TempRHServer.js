@@ -6,6 +6,10 @@ const app = express();
 const server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
 
+wss.on('connection', () => {
+  fetchWeather();
+});
+
 // Connect to local Mosquitto broker
 const mqttClient = mqtt.connect('mqtt://localhost:1883');
 
