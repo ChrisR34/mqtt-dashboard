@@ -27,5 +27,5 @@ mqttClient.on('message', (topic, message) => {
 app.use(express.static('public'));
 
 server.listen(3000, () => {
-  console.log('Server running at http://localhost:3000');
+  console.log('Server running locally at http://localhost:3000');
 });

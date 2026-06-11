@@ -8,26 +8,31 @@
 </head>
 <body>
 
-  <h1>🌡 Sensor Dashboard</h1>
+  <h1>🌡 Sensor Dashboard by CR</h1>
   <div id="status">Connecting...</div>
 
   <div class="cards">
     <div class="card">
       <div class="icon">🌡️</div>
       <div class="label">Temperature</div>
-      <div class="value" id="temp">--</div>
+      <div class="value" id="temp">0.00</div>
       <div class="unit">°C</div>
     </div>
     <div class="card">
       <div class="icon">💧</div>
       <div class="label">Humidity</div>
-      <div class="value" id="humidity">--</div>
+      <div class="value" id="humidity">0.00</div>
       <div class="unit">% RH</div>
     </div>
+    <div class="card">
+      <div class="icon">🌤️</div>
+      <div class="label">Weather Forecast</div>
+      <div class="value" id="forecast">Feature not Implemented yet</div>
+      <div class="unit"></div>
   </div>
 
   <div id="log">
-    <h2>Message Log</h2>
+    <h2>LATEST DATA</h2>
     <ul id="log-list"></ul>
   </div>
 
@@ -49,13 +54,12 @@
       const { topic, data } = JSON.parse(event.data);
 
       // Update cards based on topic
-      if (topic.includes('temperature')) {
+      if (topic.includes('temp')) {
         document.getElementById('temp').textContent = parseFloat(data).toFixed(1);
       }
-      if (topic.includes('humidity')) {
+      if (topic.includes('rh')) {
         document.getElementById('humidity').textContent = parseFloat(data).toFixed(1);
       }
-
       // Add to log
       const li = document.createElement('li');
       const time = new Date().toLocaleTimeString();
