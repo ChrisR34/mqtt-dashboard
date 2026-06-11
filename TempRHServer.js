@@ -24,6 +24,33 @@ mqttClient.on('message', (topic, message) => {
   });
 });
 
+const https = require('https');
+
+function fetchWeather() {
+  const url = 'https://api.open-meteo.com/v1/forecast?latitude=51.4123&longitude=-0.3007&current=temperature_2m,relative_humidity_2m,weathercode&timezone=Europe/London';
+  
+  https.get(url, (res) => {
+    let data = '';
+    res.on('data', chunk => data += chunk);
+    res.on('end', () => {
+      const weather = JSON.parse(data).current;
+      const payload = JSON.stringify({
+        topic: 'weather/forecast',
+        data: JSON.stringify(weather)
+      });
+      wss.clients.forEach(client => {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(payload);
+        }
+      });
+    });
+  });
+}
+
+// Fetch immediately and then every 10 minutes
+fetchWeather();
+setInterval(fetchWeather, 600000);
+
 app.use(express.static('public'));
 
 server.listen(3000, () => {

@@ -27,7 +27,7 @@
     <div class="card">
       <div class="icon">🌤️</div>
       <div class="label">Weather Forecast</div>
-      <div class="value" id="forecast">Feature not Implemented yet</div>
+      <div class="value" id="forecast"></div>
       <div class="unit"></div>
   </div>
 
@@ -59,6 +59,12 @@
       }
       if (topic.includes('rh')) {
         document.getElementById('humidity').textContent = parseFloat(data).toFixed(1);
+      }
+      if (topic === 'weather/forecast') 
+      {
+         const weather = JSON.parse(data);
+         // update your weather card here
+        document.getElementById('forecast').textContent = weather.temperature_2m + '°C';
       }
       // Add to log
       const li = document.createElement('li');
