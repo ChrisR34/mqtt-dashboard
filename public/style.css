@@ -17,6 +17,12 @@ h1 {
   color: #00d4ff;
 }
 
+h2 {
+  font-size: 1.20rem;
+  margin-bottom: 5px;
+  color: #00d4ff;
+}
+
 #status {
   font-size: 0.9rem;
   margin-bottom: 40px;
