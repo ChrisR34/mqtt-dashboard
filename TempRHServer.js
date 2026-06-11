@@ -53,7 +53,7 @@ function fetchWeather() {
 
 // Fetch immediately and then every minute
 fetchWeather();
-setInterval(fetchWeather, 6000);
+setInterval(fetchWeather, 30000);
 
 app.use(express.static('public'));
 
