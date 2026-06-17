@@ -31,8 +31,7 @@ mqttClient.on('message', (topic, message) => {
 const https = require('https');
 
 function fetchWeather() {
-  const url = 'https://api.open-meteo.com/v1/forecast?latitude=51.4123&longitude=-0.3007&current=temperature_2m,relative_humidity_2m,weathercode&timezone=Europe/London';
-  
+  const url = 'https://api.open-meteo.com/v1/forecast?latitude=51.4123&longitude=-0.3007&current=temperature_2m,relative_humidity_2m,weathercode,windspeed_10m&timezone=Europe/London';
   https.get(url, (res) => {
     let data = '';
     res.on('data', chunk => data += chunk);
@@ -53,7 +52,7 @@ function fetchWeather() {
 
 // Fetch immediately and then every minute
 fetchWeather();
-setInterval(fetchWeather, 30000);
+setInterval(fetchWeather, 40000);
 
 app.use(express.static('public'));
 
