@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MQTT Sensor Dashboard</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 </head>
 <body>
 
@@ -37,14 +38,16 @@
       <div class="value" id="wind">--</div>
       <div class="unit">km/h</div>
     </div>
-   <div id="chart-container">
-  <div class="chart-header">TEMPERATURE HISTORY</div>
-  <canvas id="tempChart"></canvas>
-  <div class="chart-stats">
+  <div id="chart-container">
+   <div class="chart-header">TEMPERATURE HISTORY</div>
+   <canvas id="tempChart"></canvas>
+   <div class="chart-stats">
     <div><span class="stat-label">MIN</span><span id="tempMin">--</span></div>
     <div><span class="stat-label">AVG</span><span id="tempAvg">--</span></div>
     <div><span class="stat-label">MAX</span><span id="tempMax">--</span></div>
   </div> 
+</div>
+
   <div id="log">
     <h2>LATEST DATA</h2>
     <ul id="log-list"></ul>
@@ -164,6 +167,6 @@
       logList.insertBefore(li, logList.firstChild);
     };
   </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
 </body>
 </html>
